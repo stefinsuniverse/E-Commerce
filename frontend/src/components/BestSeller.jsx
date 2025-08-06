@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext';
 import Title from './Title';
+import ProductItem from './ProductItem';
 
 const BestSeller = () => {
     const { products } = useContext(ShopContext);
@@ -19,7 +20,15 @@ const BestSeller = () => {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita facere, fugit alias assumenda aspernatur quos debitis quaerat at, beatae, doloribus odio! Nemo qui et, perspiciatis vitae quia consequuntur sequi ad.
                 </p>
             </div>
-            {/* Render bestsellers here if needed */}
+            <div className='grid grid-cols sm:grid-cols-3 md:grid-cols-4 lg:grid-cols gap-4 gap-y-6'>
+            {
+                bestseller.map((item,index)=>(
+                    <ProductItem key={index}  id={item._id} name={item.name} image={item.image} price={item.price}/>
+                ))
+
+            }
+                 </div>
+            
         </div>
     )
 }
