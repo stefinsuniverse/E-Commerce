@@ -2,7 +2,7 @@ import React from 'react'
 
 const NewsletterBox = () => {
   return (
-    <div>
+    <div className='w-full'>
       
     </div>
   )
