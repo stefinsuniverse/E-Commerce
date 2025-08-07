@@ -5,12 +5,14 @@ import Title from './Title';
 
 
 
+
+
 const LatestCollection = () => {
   const { products } = useContext(ShopContext);
   const [latestProducts, setLatestProducts] = useState([]);
 
   useEffect(() => {
-    setLatestProducts(products.slice(0-10)); // Last 8 products
+    setLatestProducts(products.slice(-8)); // Last 8 products
   }, [products]);
 
   return (
@@ -27,6 +29,7 @@ const LatestCollection = () => {
         {
         latestProducts.map((item, index) => (
           <ProductItem key={index} id={item.id} image={item.image} name={item.name} price={item.price} />
+  
         ))
         }
       </div>
