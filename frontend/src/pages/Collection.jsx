@@ -2,16 +2,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { assets } from '../assets/assets';
 import Title from '../components/Title';
-import ProductItem from '../components/ProductItem';
+import ProductItem from '../components/ProductItem'
 
 const Collection = () => {
-  const { products } = useContext(ShopContext);
+  // Corrected: use products, not product
+  const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState('relevant');
-
 
   const toggleCategory = (e) => {
     const value = e.target.value;
@@ -22,7 +22,6 @@ const Collection = () => {
     }
   }
 
-  
   const toggleSubCategory = (e) => {
     const value = e.target.value;
     if (subCategory.includes(value)) {
@@ -33,52 +32,40 @@ const Collection = () => {
   }
 
   const applyFilters = () => {
-
-    let productsCopy = products.slice();
+    let productsCopy = Array.isArray(products) ? products.slice() : [];
     if (category.length > 0) {
       productsCopy = productsCopy.filter(item => category.includes(item.category));
     }
-
     if (subCategory.length > 0) {
       productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory));
-  }
-    setFilterProducts(productsCopy)
-
-
+    }
+    setFilterProducts(productsCopy);
   }
 
   const sortProducts = () => {
-  
     let fpCopy = filterProducts.slice();
-
     switch (sortType) {
-      
       case 'low-high':
-      setFilterProducts(fpCopy.sort((a, b) => a.price - b.price));
-      break;
-      
+        setFilterProducts(fpCopy.sort((a, b) => a.price - b.price));
+        break;
       case 'high-low':
-      setFilterProducts(fpCopy.sort((a, b) => b.price - a.price));
-      break;
-      
+        setFilterProducts(fpCopy.sort((a, b) => b.price - a.price));
+        break;
       default:
         applyFilters();
         break;
-
+    }
   }
-}
-
 
   useEffect(() => {
     applyFilters();
-  },[category, subCategory])
+    // eslint-disable-next-line
+  }, [category, subCategory, products]);
 
   useEffect(() => {
     sortProducts();
-},[sortType])
-
-
-
+    // eslint-disable-next-line
+  }, [sortType]);
 
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
