@@ -32,7 +32,17 @@ const Collection = () => {
   }
 
   const applyFilters = () => {
+    
     let productsCopy = Array.isArray(products) ? products.slice() : [];
+    
+    if (showSearch && search)  {
+      productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+
+
+    }
+    
+    
+    
     if (category.length > 0) {
       productsCopy = productsCopy.filter(item => category.includes(item.category));
     }
@@ -59,12 +69,10 @@ const Collection = () => {
 
   useEffect(() => {
     applyFilters();
-    // eslint-disable-next-line
-  }, [category, subCategory, products]);
+  }, [category, subCategory, search,showSearch]);
 
   useEffect(() => {
     sortProducts();
-    // eslint-disable-next-line
   }, [sortType]);
 
   return (
