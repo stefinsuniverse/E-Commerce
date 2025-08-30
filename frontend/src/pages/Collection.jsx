@@ -131,7 +131,7 @@ const Collection = () => {
               <ProductItem
                 key={item.id || index}
                 name={item.name}
-                id={item.id}
+                id={item._id}
                 price={item.price}
                 image={item.image}
               />
