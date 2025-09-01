@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const ProductItem = ({ id, image, name, price }) => {
   const { currency } = useContext(ShopContext);
 
-  // Defensive: fallback if id is undefined
   const productId = id ?? '';
 
   return (
@@ -26,4 +25,4 @@ const ProductItem = ({ id, image, name, price }) => {
   );
 };
 
-export default ProductItem;
+export default ProductItem
