@@ -11,5 +11,5 @@ const productSchema = new mongoose.Schema({
     bestseller: {type: Boolean},
     date: {type: Number, required: true}
 })
-const ProductModel = mongoose.models.product || mongoose.model("product", productSchema);
-export default Productmodel
+const productmodel = mongoose.models.product || mongoose.model("product", productSchema);
+export default productmodel
