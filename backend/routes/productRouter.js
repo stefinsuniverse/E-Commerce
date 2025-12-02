@@ -5,13 +5,13 @@ import upload from "../middleware/multer.js";
 const productRouter = express.Router();
 
 productRouter.post('/add', upload.fields([
-    { name: 'image1,maxcCount:1' },
-    { name: 'image2,maxcCount:1' },
-    { name: 'image3,maxcCount:1' },
-    { name: 'image4,maxcCount:1' }
+    { name: 'image1', maxCount: 1 }, 
+    { name: 'image2', maxCount: 1 }, 
+    { name: 'image3', maxCount: 1 }, 
+    { name: 'image4', maxCount: 1 },  
 ]), addProduct);
 productRouter.post('/remove', removeProduct);
 productRouter.post('/:single', singleProduct);
 productRouter.put('/list', listProduct);
 
-export default productRouter;
+export default productRouter

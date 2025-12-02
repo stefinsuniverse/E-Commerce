@@ -15,7 +15,7 @@ const addProduct = async (req, res) => {
         res.json({})
      } catch (error) {
         console.log(error)
-        res.json({success:false})
+        res.json({success:false,message:error.message})
         
      }
     
